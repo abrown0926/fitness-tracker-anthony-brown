@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
-const dbConnection = require("../database/config");
 const Workout = require("../models/workoutModel");
 const MONGO_URI = process.env;
 
-// mongoose.connect(
-//   "mongodb+srv://abrown0926:Br0wn0525@cluster0.vujl3.mongodb.net/workout",
-//   {
-//     useNewUrlParser: true,
-//     useFindAndModify: false,
-//     useUnifiedTopology: true,
-//   }
-// );
-dbConnection();
+// "mongodb+srv://abrown0926:Br0wn0525@cluster0.vujl3.mongodb.net/workout",
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
 
 const workoutSeed = [
   {
@@ -19,7 +15,7 @@ const workoutSeed = [
     exercises: [
       {
         type: "resistance",
-        name: "Bicep Curl",
+        name: "Bicep Curl!!!",
         duration: 20,
         weight: 100,
         reps: 10,
