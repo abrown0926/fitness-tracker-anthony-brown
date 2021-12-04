@@ -1,14 +1,26 @@
-require("dotenv").config();
 const express = require("express");
-const dbConnection = require("./database/config");
+const logger = require("morgan");
+const mongoose = require("mongoose");
+//! require("./seeders/seed"); // Either npm run seed or keep this in here uncommented and it will run the seed
+
+const PORT = process.env.PORT || 3005;
+
 const app = express();
-const port = 3000;
 
-dbConnection();
+app.use(logger("dev"));
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
 });
+
+//require(apiRoute)(app);
+require("./routes/htmlroutes")(app);
+require("./routes/apiroutes")(app);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
