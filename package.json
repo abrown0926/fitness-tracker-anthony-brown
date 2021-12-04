@@ -1,0 +1,15 @@
+{
+  "name": "mongoose_skeleton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./develop/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./develop/server.js",
+    "watch": "nodemon ./develop/server.js",
+    "seed": "node ./develop/seeders/seed.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
