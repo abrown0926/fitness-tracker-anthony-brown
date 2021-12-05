@@ -9,18 +9,20 @@ app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-}).then(() => console.log("mongodb connected"))
-.catch(err => console.log(err))
+mongoose
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+    useNewUrlParser: true,
+    // useFindAndModify: false,
+  })
+  .then(() => console.log("mongodb connected"))
+  .catch((err) => console.log(err));
 
-//require(apiRoute)(app);
 require("./routes/exerciseRoutes")(app);
 require("./routes/apiRoutes")(app);
 
 app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`);
+  console.log(`App listening at http://localhost:${PORT}`);
 });
